@@ -1,3 +1,6 @@
+package Model;
+import View.*
+
 public class Model {
     private int height;
     private int width;
