@@ -1,5 +1,5 @@
 package Model;
-import View.*
+import View.*;
 
 public class Model {
     private int height;

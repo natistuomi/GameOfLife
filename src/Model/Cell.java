@@ -1,3 +1,5 @@
+package Model;
+
 public class Cell {
     private int state = 0;
     private int livingNeighbours = 0;
