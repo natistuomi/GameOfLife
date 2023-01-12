@@ -6,12 +6,14 @@ public class Model {
     private int x;
     private Cell[][] cell;
     private Cell[][] replicaCell;
+    private Shape[] living;
+    private int count = 0;
 
-    public Model(int y, int width) {
+    public Model(int y, int x) {
         this.y = y;
-        this.x = width;
-        cell = new Cell[width][y];
-        replicaCell = new Cell[width][y];
+        this.x = x;
+        cell = new Cell[x][y];
+        replicaCell = new Cell[x][y];
     }
 
     public void update(){
@@ -19,9 +21,14 @@ public class Model {
             for(int n = 0; n < y; n++){
                 checkForNeighbours(i, n);
                 replicaCell[i][n].checkState();
+                if(replicaCell[i][n].getState() == 1){
+                    living[count] = new Point(i, n);
+                    count += 1;
+                }
             }
         }
         cell = replicaCell;
+        count = 0;
     }
 
     public void checkForNeighbours(int w, int h){
@@ -36,7 +43,7 @@ public class Model {
     }
 
 
-    public Shape[] getShapes(){
-
+    public Shape[] getShapes() {
+        return living;
     }
 }
