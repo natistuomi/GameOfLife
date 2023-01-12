@@ -36,5 +36,8 @@ public class Model {
     }
 
 
-    public void getShapes(){}
+    public Shape[] getShapes(){
+        Shape[] x = new Shape[2];
+        return x;
+    }
 }
