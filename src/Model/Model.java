@@ -6,14 +6,32 @@ public class Model {
     private int x;
     private Cell[][] cell;
     private Cell[][] replicaCell;
-    private Shape[] living;
+    private Point[] living;
     private int count = 0;
 
     public Model(int y, int x) {
         this.y = y;
         this.x = x;
         cell = new Cell[x][y];
+        setGrid();
         replicaCell = new Cell[x][y];
+    }
+
+    public void setGrid(){
+        for(int i = 0; i < x; i++){
+            for(int n = 0; n < y; n++){
+                cell[i][n] = new Cell();
+            }
+        }
+        cell[0][1].setState();
+        cell[0][2].setState();
+        cell[1][1].setState();
+        cell[2][1].setState();
+        living = new Point[4];
+        living[0] = new Point(0,1);
+        living[0] = new Point(0,2);
+        living[0] = new Point(1,1);
+        living[0] = new Point(2,1);
     }
 
     public void update(){
@@ -22,8 +40,17 @@ public class Model {
                 checkForNeighbours(i, n);
                 replicaCell[i][n].checkState();
                 if(replicaCell[i][n].getState() == 1){
-                    living[count] = new Point(i, n);
                     count += 1;
+                }
+            }
+        }
+        living = new Point[count];
+        int c = 0;
+        for(int i = 0; i < x; i++){
+            for(int n = 0; n < y; n++){
+                if(replicaCell[i][n].getState() == 1){
+                    living[c] = new Point(i, n);
+                    c += 1;
                 }
             }
         }
